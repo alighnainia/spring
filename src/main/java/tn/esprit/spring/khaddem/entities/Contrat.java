@@ -2,25 +2,45 @@ package tn.esprit.spring.khaddem.entities;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
-@Setter
-@Getter
+
 @Entity
-@Table( name = "Contrat")
+@Getter
+@Setter
+@ToString
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
+
+@Table(name = "Contrat")
+
 public class Contrat implements Serializable {
+
     @Id
-    @GeneratedValue (strategy = GenerationType.IDENTITY)
-    @Column(name="idContrat")
+
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+
+    @Column(name = "idContrat")
+
     private Integer idContrat; // Clé primaire
-    private Date dateDebutContrat;
-    private Date dateFinContrat;
+
+    private Date dateDebutContract;
+
+    private Date datefinContract;
+
     private boolean archive;
-    private int montantContrat;
+
+    private Integer montantContrat;
+
     @Enumerated(EnumType.STRING)
-    private Specialite sp;
-// Constructeur et accesseurs (getters) et mutateurs (setters)
-    @ManyToOne
-    Etudiant etudiant;
+
+    private Specialite specialite;
+
+    @ManyToOne()
+    private Etudiant etudiant;
+
+
 }
+
+

@@ -1,24 +1,32 @@
 package tn.esprit.spring.khaddem.entities;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.*;
+
 import javax.persistence.*;
 import java.io.Serializable;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
-
-@ToString
-@Setter
-@Getter
 
 @Entity
-@Table( name = "DetailEquipe")
+@Table(name = "DetailEquipe")
+@Getter
+@Setter
+@ToString
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
+
 public class DetailEquipe implements Serializable {
+
     @Id
-    @GeneratedValue (strategy = GenerationType.IDENTITY)
-    @Column(name="idDetailEquipe")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "idDetailEquipe")
     private Integer idDetailEquipe; // Clé primaire
-    private int salle;
-    private String thematique;
-    @OneToOne(mappedBy="Detail_Equipe")
+    private Integer salle;
+    private String thematique ;
+
+    @OneToOne (mappedBy = "detailEquipe")
+    @JsonIgnore
     private Equipe equipe;
-// Constructeur et accesseurs (getters) et mutateurs (setters)
+
+
 }

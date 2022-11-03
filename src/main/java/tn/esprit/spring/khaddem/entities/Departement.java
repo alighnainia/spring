@@ -1,26 +1,28 @@
+
 package tn.esprit.spring.khaddem.entities;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import javax.persistence.*;
 import java.io.Serializable;
+import lombok.*;
 import java.util.Set;
-
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
-
-@ToString
-@Setter
-@Getter
 @Entity
-@Table( name = "Departement")
+@Getter
+@Setter
+@ToString
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
 public class Departement implements Serializable {
-    @Id
-    @GeneratedValue (strategy = GenerationType.IDENTITY)
-    @Column(name="idDepartement")
-    private Integer idDepart; // Clé primaire
-    private String nomDepart;
-// Constructeur et accesseurs (getters) et mutateurs (setters)
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy="departement")
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "idDepartement")
+
+    private Integer idDepartement; // Clé primaire
+    private String nomDepartement;
+
+    @OneToMany(mappedBy = "departement")
+    @JsonIgnore
     private Set<Etudiant> etudiants;
 
 

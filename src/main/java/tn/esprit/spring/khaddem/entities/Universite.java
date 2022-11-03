@@ -1,25 +1,27 @@
 package tn.esprit.spring.khaddem.entities;
+
+import lombok.*;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Set;
 
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
-
-@ToString
-@Setter
-@Getter
-
 @Entity
-@Table( name = "Universite")
+@Getter
+@Setter
+@ToString
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
 public class Universite implements Serializable {
     @Id
-    @GeneratedValue (strategy = GenerationType.IDENTITY)
-    @Column(name="idUniversite")
-    private Integer idUniv; // Clé primaire
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "idUniversite")
+    private Integer idUniv;
     private String nomUniv;
-    // Constructeur et accesseurs (getters) et mutateurs (setters)
-    @OneToMany(cascade = CascadeType.ALL)
+
+    @OneToMany()
     private Set<Departement> departements;
+
+
 }
